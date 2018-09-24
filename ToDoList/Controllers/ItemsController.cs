@@ -57,13 +57,15 @@ namespace ToDoList.Controllers
     }
 
     [HttpPost("/items/{id}/update")]
-    public ActionResult Update(int id, string newDescription, string newCategoryId)
+    public ActionResult Update(int id, string newDescription, int newCategoryId)
     {
         Item thisItem = Item.Find(id);
 
         thisItem.Edit(Request.Form["newDescription"], int.Parse(Request.Form["category"]));
         return RedirectToAction("Index");
     }
+
+
 
     [HttpPost("/items/delete")]
     public ActionResult DeleteAll()

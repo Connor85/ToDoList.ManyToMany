@@ -24,11 +24,11 @@ namespace ToDoList.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE items SET description = @newDescription, WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE items SET description = @newDescription WHERE id = @searchId;";
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
-      searchId.Value = id;
+      searchId.Value = this.id;
       cmd.Parameters.Add(searchId);
 
       MySqlParameter itemDescription = new MySqlParameter();

@@ -7,10 +7,10 @@
 <form action="/items/@Model["item"].id/update" method="post">
     <label for="newDescription">Name:</label>
     <input type="text" name="newDescription" value="@Model["item"].description">
-    <select>
+    <select  name="category">
       @foreach (var category in Model["categories"])
       {
-        <option name="category" value=@category.GetId()>@category.GetName()</option>
+        <option value=@category.GetId()>@category.GetName()</option>
       }
     </select>
     <button type="submit">Edit</button>

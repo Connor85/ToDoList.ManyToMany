@@ -301,7 +301,28 @@ namespace ToDoList.Models
 
     public void Done()
     {
-      complete = !complete;
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE items SET done = @done WHERE id = @itemId;";
+
+      MySqlParameter doneParameter = new MySqlParameter();
+      doneParameter.ParameterName = "@done";
+      doneParameter.Value = true;
+      cmd.Parameters.Add(doneParameter);
+
+      MySqlParameter itemIdParameter = new MySqlParameter();
+      itemIdParameter.ParameterName = "@itemId";
+      itemIdParameter.Value = id;
+      cmd.Parameters.Add(itemIdParameter);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
     }
   }
 }

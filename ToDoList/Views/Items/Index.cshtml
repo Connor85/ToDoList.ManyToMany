@@ -4,7 +4,7 @@
 <p>Item index</p>
 @foreach (var item in Model)
 {
-    <h4>@item.description | <a href="/items/@item.id/update">Edit</a></h4>
+    <h4>@item.description | <a href="/items/@item.id/update">Edit</a> |<a href="/items/@item.id/done"> Done</a></h4>
 }
 <form action="/items/sorted" method = "post">
 <div class="form-group">

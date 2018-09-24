@@ -65,8 +65,6 @@ namespace ToDoList.Controllers
         return RedirectToAction("Index");
     }
 
-
-
     [HttpPost("/items/delete")]
     public ActionResult DeleteAll()
     {
@@ -82,8 +80,12 @@ namespace ToDoList.Controllers
         return RedirectToAction("Index");
     }
 
-
-
-
+    [HttpGet("/items/{id}/done")]
+    public ActionResult Done(int id)
+    {
+      Item doneItem = Item.Find(id);
+      doneItem.Done();
+      return RedirectToAction("Index");
+    }
   }
 }

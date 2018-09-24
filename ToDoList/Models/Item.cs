@@ -11,11 +11,13 @@ namespace ToDoList.Models
     public int id {get; set; }
     public string description {get; set; }
     public string dueDate {get; set; }
+    public bool complete {get; set; }
 
     public Item(string Description, string newDueDate, int Id = 0)
     {
       id = Id;
       description = Description;
+      complete = false;
       dueDate = newDueDate;
     }
 
@@ -295,6 +297,11 @@ namespace ToDoList.Models
             conn.Dispose();
         }
         return categories;
+    }
+
+    public void Done()
+    {
+      complete = !complete;
     }
   }
 }
